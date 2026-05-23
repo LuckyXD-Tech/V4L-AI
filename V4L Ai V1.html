@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>V4L Ai</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#0f0f0f;
+color:white;
+overflow-x:hidden;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.menu-btn{
+font-size:28px;
+cursor:pointer;
+user-select:none;
+}
+
+.menu{
+position:fixed;
+top:0;
+right:-280px;
+width:260px;
+height:100%;
+background:#181818;
+padding:20px;
+transition:0.3s;
+z-index:999;
+border-left:1px solid #2a2a2a;
+}
+
+.menu.active{
+right:0;
+}
+
+.menu h3{
+margin-bottom:20px;
+}
+
+.menu button{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+border-radius:12px;
+background:#232323;
+color:white;
+cursor:pointer;
+font-size:15px;
+transition:0.2s;
+}
+
+.menu button:hover{
+background:#333;
+}
+
+.hero{
+padding:30px 20px;
+border-radius:20px;
+background:#181818;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-size:38px;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:0.8;
+line-height:1.6;
+}
+
+.section{
+background:#181818;
+padding:20px;
+border-radius:18px;
+margin-bottom:20px;
+}
+
+.section h2{
+margin-bottom:15px;
+font-size:22px;
+}
+
+textarea{
+width:100%;
+height:160px;
+background:#111;
+border:none;
+outline:none;
+padding:15px;
+border-radius:14px;
+color:white;
+resize:none;
+margin-bottom:15px;
+}
+
+input{
+width:100%;
+padding:14px;
+background:#111;
+border:none;
+outline:none;
+border-radius:14px;
+color:white;
+margin-bottom:12px;
+}
+
+.action-btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:14px;
+background:white;
+color:black;
+font-weight:bold;
+cursor:pointer;
+transition:0.2s;
+}
+
+.action-btn:hover{
+transform:scale(0.98);
+}
+
+.output{
+margin-top:20px;
+background:#101010;
+padding:18px;
+border-radius:16px;
+white-space:pre-wrap;
+line-height:1.6;
+font-size:14px;
+border:1px solid #252525;
+}
+
+.copy-btn{
+margin-top:15px;
+background:#2d2d2d;
+color:white;
+}
+
+.contact{
+margin-top:40px;
+display:flex;
+justify-content:center;
+}
+
+.wa-btn{
+padding:16px 30px;
+border-radius:18px;
+background:#25D366;
+color:white;
+text-decoration:none;
+font-weight:bold;
+font-size:16px;
+}
+
+.watermark{
+margin-top:30px;
+text-align:center;
+opacity:0.4;
+font-size:13px;
+}
+
+.hidden{
+display:none;
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-top:20px;
+}
+
+.feature-card{
+background:#202020;
+padding:18px;
+border-radius:16px;
+}
+
+.feature-card h3{
+margin-bottom:8px;
+}
+
+@media(max-width:700px){
+.feature-grid{
+grid-template-columns:1fr;
+}
+.hero h1{
+font-size:30px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="menu" id="menu">
+<h3>V4L Ai Menu</h3>
+
+<button onclick="showSection('homeSection')">Dashboard
+@valdi.prompt</button>
+<button onclick="showSection('randomSection')">Random Prompt
+@valdi.prompt</button>
+<button onclick="showSection('requestSection')">Request Prompt
+@valdi.prompt</button>
+<button onclick="showSection('imageSection')">Image To Prompt
+@valdi.prompt</button>
+
+</div>
+
+<div class="container">
+
+<div class="topbar">
+<div class="logo">V4L Ai</div>
+<div class="menu-btn" id="menuBtn">⋮</div>
+</div>
+
+<!-- HOME -->
+<div id="homeSection">
+
+<div class="hero">
+<h1>V4L Ai</h1>
+<p>
+AI tools untuk membuat prompt ultra realistis dengan gaya iPhone candid snapshot
+yang natural, random, imperfect, dan tidak terlihat seperti AI.
+</p>
+</div>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<h3>Random Prompt</h3>
+<p>Generate prompt realistis secara otomatis dengan sekali klik.</p>
+</div>
+
+<div class="feature-card">
+<h3>Request Prompt</h3>
+<p>Buat prompt sesuai lokasi, pose, vibe, dan situasi custom.</p>
+</div>
+
+<div class="feature-card">
+<h3>Image To Prompt</h3>
+<p>Ubah referensi foto menjadi prompt realistis otomatis.</p>
+</div>
+
+<div class="feature-card">
+<h3>Ultra Realism</h3>
+<p>Fokus pada hasil raw iPhone snapshot anti cinematic.</p>
+</div>
+
+</div>
+
+<div class="contact">
+<a href="https://wa.me/6283896184039" target="_blank" class="wa-btn">
+WhatsApp Owner
+</a>
+</div>
+
+<div class="watermark">
+TikTok : @valdi.prompt
+</div>
+
+</div>
+
+<!-- RANDOM -->
+<div class="section hidden" id="randomSection">
+
+<h2>Random Prompt</h2>
+
+<button class="action-btn" id="randomBtn">
+ROLL RANDOM
+</button>
+
+<div class="output" id="randomOutput">
+Prompt akan muncul di sini...
+</div>
+
+<button class="action-btn copy-btn" id="copyRandom">
+Copy Prompt
+</button>
+
+</div>
+
+<!-- REQUEST -->
+<div class="section hidden" id="requestSection">
+
+<h2>Request Prompt</h2>
+
+<input type="text" id="lokasiInput" placeholder="Lokasi / tempat">
+<input type="text" id="poseInput" placeholder="Pose / aktivitas">
+<input type="text" id="vibeInput" placeholder="Vibe / suasana">
+
+<button class="action-btn" id="requestBtn">
+Generate Prompt
+</button>
+
+<div class="output" id="requestOutput">
+Prompt akan muncul di sini...
+</div>
+
+<button class="action-btn copy-btn" id="copyRequest">
+Copy Prompt
+</button>
+
+</div>
+
+<!-- IMAGE -->
+<div class="section hidden" id="imageSection">
+
+<h2>Image To Prompt</h2>
+
+<input type="file" id="imageInput" accept="image/*">
+
+<textarea id="imageDesc"
+placeholder="Deskripsikan foto yang diupload..."></textarea>
+
+<button class="action-btn" id="imageBtn">
+Generate Prompt
+</button>
+
+<div class="output" id="imageOutput">
+Prompt akan muncul di sini...
+</div>
+
+<button class="action-btn copy-btn" id="copyImage">
+Copy Prompt
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", ()=>{
+
+const menu=document.getElementById("menu");
+const menuBtn=document.getElementById("menuBtn");
+
+menuBtn.addEventListener("click",()=>{
+menu.classList.toggle("active");
+});
+
+window.showSection=function(id){
+
+document.getElementById("homeSection").classList.add("hidden");
+document.getElementById("randomSection").classList.add("hidden");
+document.getElementById("requestSection").classList.add("hidden");
+document.getElementById("imageSection").classList.add("hidden");
+
+document.getElementById(id).classList.remove("hidden");
+
+menu.classList.remove("active");
+}
+
+const randomBtn=document.getElementById("randomBtn");
+const randomOutput=document.getElementById("randomOutput");
+
+const locations=[
+  "beach",
+  "kost room",
+  "kost rooftop",
+  "kost balcony",
+  "small rented room",
+  "messy kosan room",
+  "yellow light bedroom",
+  "dark bedroom",
+  "rainy street in Jakarta",
+  "Jakarta alley",
+  "Jakarta rooftop",
+  "Jakarta night street",
+  "Jakarta minimarket parking lot",
+  "Bandung coffee shop",
+  "Bandung alley",
+  "Bandung rainy street",
+  "Bandung rooftop cafe",
+  "Bandung old town",
+  "Bandung train station",
+  "Bandung street at 2am",
+  "Yogyakarta street",
+  "Malioboro at night",
+  "Jogja angkringan",
+  "Jogja alley",
+  "Jogja cafe",
+  "Jogja art space",
+  "Jogja boarding room",
+  "Surabaya night street",
+  "Surabaya coffee shop",
+  "Surabaya old building",
+  "Surabaya port",
+  "Surabaya alley",
+  "Bali beach cafe",
+  "Bali rooftop",
+  "Bali minimarket",
+  "Bali small villa",
+  "Bali rainy road",
+  "Denpasar street",
+  "Seminyak at night",
+  "Canggu cafe",
+  "Ubud road",
+  "Makassar harbor",
+  "Makassar beach road",
+  "Makassar cafe",
+  "Makassar alley",
+  "Palembang bridge",
+  "Palembang riverside",
+  "Palembang night market",
+  "Medan street food area",
+  "Medan rooftop cafe",
+  "Medan rainy alley",
+  "Batam ferry terminal",
+  "Batam harbor",
+  "Batam cafe",
+  "Batam motel room",
+  "Bogor rainy street",
+  "Bogor botanical garden area",
+  "Bogor coffee shop",
+  "Depok roadside",
+  "Depok alley",
+  "Depok internet cafe",
+  "Bekasi rooftop",
+  "Bekasi night road",
+  "Bekasi parking lot",
+  "Tangerang suburban street",
+  "Tangerang coffee shop",
+  "Tangerang rooftop parking",
+  "BSD night road",
+  "BSD cafe",
+  "BSD crosswalk",
+  "Pik avenue area",
+  "PIK seaside",
+  "PIK coffee shop",
+  "PIK night road",
+  "Pantai Indah Kapuk alley",
+  "Kemang rooftop",
+  "Kemang bar street",
+  "Kemang cafe",
+  "Blok M at night",
+  "Blok M alley",
+  "Blok M bus stop",
+  "Sudirman pedestrian street",
+  "SCBD rooftop",
+  "SCBD parking area",
+  "SCBD coffee shop",
+  "Senopati cafe",
+  "Senayan street",
+  "Kota Tua Jakarta",
+  "Glodok Chinatown",
+  "Glodok alley",
+  "Pasar Baru Jakarta",
+  "Monas area at night",
+  "Ancol beach",
+  "Ancol night carnival",
+  "Dufan parking lot",
+  "Jakarta MRT station",
+  "Jakarta busway stop",
+  "Jakarta commuter line",
+  "Jakarta underground station",
+  "Bandung train platform",
+  "Yogyakarta station",
+  "Surabaya station",
+  "small Indonesian alley",
+  "kampung street",
+  "kampung rooftop",
+  "kampung convenience store",
+  "kampung mosque yard",
+  "kampung soccer field",
+  "Indonesian roadside warung",
+  "warteg",
+  "street angkringan",
+  "pecel lele tent",
+  "warmindo",
+  "street fried rice stall",
+  "street satay cart",
+  "bakso stall",
+  "mie ayam stall",
+  "Indomaret terrace",
+  "Alfamart parking lot",
+  "24 hour minimarket",
+  "minimarket front area",
+  "minimarket smoking area",
+  "small mosque terrace",
+  "musholla hallway",
+  "Indonesian school corridor",
+  "school canteen",
+  "empty classroom",
+  "campus hallway",
+  "campus rooftop",
+  "campus parking lot",
+  "campus library",
+  "internet cafe",
+  "warnet esports room",
+  "PS rental place",
+  "karaoke room",
+  "Indonesian arcade",
+  "mall rooftop parking",
+  "mall escalator",
+  "mall smoking area",
+  "food court corner",
+  "small local cafe",
+  "aesthetic cafe",
+  "industrial cafe",
+  "minimalist cafe",
+  "Japanese themed cafe",
+  "Korean cafe",
+  "hidden coffee shop",
+  "rooftop coffee shop",
+  "late night cafe",
+  "cafe near railway",
+  "cafe near rice field",
+  "cafe near beach",
+  "Indonesian suburban road",
+  "village road",
+  "rice field road",
+  "tea plantation",
+  "pine forest",
+  "mountain road",
+  "foggy hill road",
+  "camping ground",
+  "bonfire area",
+  "small harbor",
+  "ferry deck",
+  "fishing village",
+  "wooden dock",
+  "river side",
+  "canal side",
+  "rainy sidewalk",
+  "wet asphalt road",
+  "under flyover",
+  "underpass tunnel",
+  "gas station at midnight",
+  "motorcycle workshop",
+  "car wash",
+  "old warehouse",
+  "abandoned building",
+  "empty apartment hallway",
+  "cheap hotel room",
+  "hotel corridor",
+  "hotel elevator",
+  "apartment elevator",
+  "laundry room",
+  "coin laundry",
+  "small gym",
+  "basketball court",
+  "futsal field",
+  "stadium tribune",
+  "empty park",
+  "city park bench",
+  "playground at night",
+  "rainy pedestrian street",
+  "crosswalk at night",
+  "street with neon signs",
+  "street full of billboards",
+  "Chinese district alley",
+  "old Indonesian town",
+  "museum hallway",
+  "art gallery",
+  "bookstore",
+  "vinyl store",
+  "old arcade room",
+  "retro game rental",
+  "street after rain",
+  "empty road at dawn",
+  "3am Jakarta street",
+  "quiet Bandung morning",
+  "humid midnight road",
+  "street with yellow lights",
+  "flickering streetlight",
+  "quiet apartment balcony",
+  "window during rain",
+  "messy gaming room",
+  "RGB setup room",
+  "CRT computer room",
+  "streaming setup room",
+  "editing room",
+  "podcast studio",
+  "music studio",
+  "tattoo studio",
+  "barbershop",
+  "silent salon",
+  "small rooftop in Indonesia",
+  "crowded night market",
+  "traditional Indonesian market",
+  "small roadside bridge",
+  "pedestrian bridge",
+  "motorcycle parking area",
+  "abandoned rooftop",
+  "roof overlooking city lights",
+  "empty convenience store aisle",
+  "small local bookstore",
+  "cheap motel room",
+  "flooded alley",
+  "rainy gang",
+  "narrow alley with neon lights",
+  "city alley at midnight",
+  "urban Indonesian street",
+  "quiet suburban Indonesia",
+  "late night roadside",
+  "road near train tracks",
+  "train crossing",
+  "motorcycle ride at night",
+  "inside TransJakarta bus",
+  "inside KRL train",
+  "inside travel bus",
+  "rest area at midnight",
+  "roadside coffee stand",
+  "street food tent",
+  "night carnival",
+  "night festival",
+  "city rooftop after rain",
+  "empty smoking area",
+  "office hallway at night",
+  "office cubicle",
+  "meeting room",
+  "parking basement",
+  "dimly lit hallway",
+  "window seat during rain",
+  "balcony with city lights",
+  "street with puddles",
+  "small Indonesian Chinatown",
+  "harbor at night",
+  "ferry waiting room",
+  "airport waiting area",
+  "small local airport",
+  "bus terminal at midnight",
+  "train station at dawn",
+  "quiet sidewalk",
+  "late night pedestrian bridge",
+  "Indonesia downtown at night",
+  "urban night scenery",
+  "city lights from rooftop",
+  "rainy city atmosphere",
+  "humid tropical night",
+  "small Indonesian neighborhood",
+  "motorcycle alley",
+  "quiet kampung at dawn",
+  "sunrise near rice field",
+  "street with food carts",
+  "nighttime roadside mosque",
+  "Indonesian cyber cafe",
+  "old internet cafe",
+  "small arcade center",
+  "indoor smoking room",
+  "vending machine corner",
+  "anime themed cafe",
+  "Japanese arcade in Indonesia",
+  "cheap apartment room",
+  "messy apartment",
+  "minimal bedroom",
+  "bedroom with projector",
+  "warm yellow room",
+  "messy study desk",
+  "gaming chair setup",
+  "small balcony at night",
+  "quiet rooftop at dawn"
+];
+
+const vibes=[
+  "humid midnight",
+  "tropical rain",
+  "late night silence",
+  "warm after rain",
+  "quiet city lights",
+  "lonely but comforting",
+  "sleep deprived",
+  "emotionally tired",
+  "urban loneliness",
+  "messy comfort",
+  "cozy sadness",
+  "3am thoughts",
+  "night bus energy",
+  "rain soaked streets",
+  "flickering neon lights",
+  "warm yellow lighting",
+  "cheap coffee warmth",
+  "quiet exhaustion",
+  "empty road vibes",
+  "silent rainy dawn",
+  "motorcycle ride at midnight",
+  "wet asphalt glow",
+  "after class exhaustion",
+  "late night studying",
+  "internet cafe nostalgia",
+  "kampung midnight atmosphere",
+  "city pop vibes",
+  "old internet nostalgia",
+  "soft rainy ambience",
+  "humid tropical atmosphere",
+  "cloudy afternoon",
+  "slow rainy day",
+  "warm coffee and cigarettes",
+  "late night convenience store",
+  "restless night",
+  "foggy mountain air",
+  "quiet suburban sadness",
+  "nostalgic city nights",
+  "warm but lonely",
+  "comforting emptiness",
+  "deep overthinking",
+  "melancholic silence",
+  "night drive thoughts",
+  "silent rooftop air",
+  "peaceful isolation",
+  "indie movie energy",
+  "coming of age vibes",
+  "old camera aesthetic",
+  "low exposure mood",
+  "film grain atmosphere",
+  "rain tapping on windows",
+  "sleepy morning air",
+  "soft hoodie comfort",
+  "broken sleep schedule",
+  "cigarette smoke in cold air",
+  "messy room comfort",
+  "comfort playlist energy",
+  "quiet healing era",
+  "sad playlist at night",
+  "empty parking lot vibes",
+  "distant traffic sounds",
+  "old mall nostalgia",
+  "cheap motel loneliness",
+  "small town night",
+  "big city exhaustion",
+  "faded memories",
+  "slow life atmosphere",
+  "lofi rainy midnight",
+  "dim apartment lighting",
+  "night market ambience",
+  "crosswalk at midnight",
+  "cold rainy balcony",
+  "dark room with LED lights",
+  "tired eyes and warm lights",
+  "urban rainy atmosphere",
+  "anime ending vibes",
+  "late night scrolling",
+  "soft breeze on rooftop",
+  "rain and neon reflections",
+  "quiet coffee shop music",
+  "distant train sounds",
+  "empty hallway echoes",
+  "lonely convenience store run",
+  "barely awake",
+  "emotionless comfort",
+  "half asleep energy",
+  "soft spoken silence",
+  "heavy rain atmosphere",
+  "warm instant noodles at midnight",
+  "small peaceful moments",
+  "late night internet energy",
+  "slowcore atmosphere",
+  "dreamy rainy city",
+  "urban cyber vibes",
+  "humid summer midnight",
+  "rainy tropical dawn",
+  "midnight city wandering",
+  "motorcycle rain ride",
+  "quiet hoodie weather",
+  "sleepy rainy afternoon",
+  "window watching during rain"
+];
+
+const poses=[
+  "sitting while scrolling phone",
+  "walking without noticing the camera",
+  "laying on bed",
+  "drinking coffee quietly",
+  "staring at traffic lights",
+  "looking out the rainy window",
+  "hands inside hoodie pocket",
+  "sitting on the sidewalk",
+  "walking under neon lights",
+  "smoking alone outside",
+  "typing on laptop",
+  "sleeping on the desk",
+  "staring at the ceiling",
+  "sitting on rooftop edge",
+  "wearing headphones quietly",
+  "scrolling at 3am",
+  "looking down while walking",
+  "holding warm coffee",
+  "leaning against motorcycle",
+  "sitting inside minimarket",
+  "looking at city lights",
+  "resting face on knees",
+  "standing in the rain",
+  "holding umbrella carelessly",
+  "sitting in parking lot",
+  "crossing the street slowly",
+  "standing under streetlight",
+  "laying on messy bed",
+  "playing games all night",
+  "looking at train passing by",
+  "holding camera with flash",
+  "taking mirror selfie",
+  "taking blurry random pic",
+  "looking away awkwardly",
+  "sitting in silence",
+  "opening convenience store fridge",
+  "drinking soda at midnight",
+  "eating instant noodles",
+  "listening to music loudly",
+  "staring into space",
+  "looking tired in elevator mirror",
+  "sitting at cafe corner",
+  "holding cigarette near window",
+  "watching rain in silence",
+  "resting on balcony railing",
+  "walking aimlessly",
+  "sitting on apartment floor",
+  "taking random flash photo",
+  "looking sleepy",
+  "covering face with phone",
+  "leaning on vending machine",
+  "sitting in dark room",
+  "holding old digital camera",
+  "fixing messy hair",
+  "taking candid mirror pic",
+  "wearing oversized hoodie",
+  "sitting near train tracks",
+  "looking at the ocean quietly",
+  "walking through alley at night",
+  "resting chin on hand",
+  "slouching on chair",
+  "sitting beside window during rain",
+  "opening laptop slowly",
+  "holding plastic coffee cup",
+  "looking at phone notifications",
+  "waiting at bus stop",
+  "standing alone in crowd",
+  "sitting near convenience store entrance",
+  "looking through foggy glass",
+  "holding umbrella while walking slowly",
+  "taking low quality digicam pic",
+  "looking at neon signs",
+  "walking through wet streets",
+  "sitting on crosswalk barrier",
+  "playing with lighter",
+  "looking exhausted after class",
+  "sitting in empty classroom",
+  "walking on pedestrian bridge",
+  "sitting in internet cafe",
+  "holding game controller lazily",
+  "looking outside train window",
+  "standing near railing",
+  "watching sunrise quietly",
+  "taking random rooftop photo",
+  "looking at old messages",
+  "staring at CRT monitor",
+  "holding instant noodle cup",
+  "sitting near vending machine",
+  "looking distant and tired",
+  "sitting with legs folded",
+  "resting forehead on window",
+  "leaning against apartment wall",
+  "walking after rain",
+  "holding tote bag loosely",
+  "sitting near puddles",
+  "looking at passing cars",
+  "watching people quietly",
+  "half asleep on chair",
+  "sitting near balcony lights",
+  "looking lost in thought",
+  "slowly drinking warm tea"
+];
+
+const ratios=[
+"9:16",
+"16:9",
+"1:1",
+"4:3",
+"3:4"
+];
+
+function generatePrompt(location,pose,vibe){
+
+const ratio=ratios[Math.floor(Math.random()*ratios.length)];
+
+return `Subject: the uploaded image
+
+The most real and human possible, create an image that looks like a casual candid iPhone snapshot taken during a relaxed moment at ${location}, capturing a natural unintentional moment of the subject exactly as in the uploaded image without changing facial features, identity, skin tone, hairstyle, body proportions, or any facial structure at all. The subject is ${pose}, looking natural and relaxed as if the photo was captured randomly by a friend during a genuine everyday moment.
+
+iPhone rear camera look, handheld snapshot style, slightly tilted framing, imperfect composition, uneven crop, and natural camera positioning as if captured quickly without planning. Slight natural motion blur, realistic phone camera grain, and authentic lighting imperfections are allowed for realism.
+
+The environment should strongly capture authentic ${location} vibes with FULL sharp background details and absolutely no blur. Visible Indonesian urban clutter, natural objects, local atmosphere, realistic textures, random people, and environmental details should remain naturally detailed and fully focused. The atmosphere must feel ${vibe}, peaceful, naturally imperfect, and realistically captured like a genuine random iPhone photo.
+
+Lighting must come naturally from realistic environmental lighting sources. No cinematic grading, no dramatic shadows, no HDR processing, and no stylized editing. Colors should remain neutral and realistic like a genuine iPhone snapshot.
+
+Composition must remain imperfect and realistic: not symmetrical, not perfectly centered, not cinematic, no portrait mode blur, no depth-of-field effect, and no bokeh. Background must stay fully sharp and detailed like a real random iPhone snapshot captured unintentionally in real life.
+
+Image must feel like a raw, unedited, spontaneous Indonesian photo casually taken during a genuine everyday moment.
+
+Aspect Ratio: ${ratio}
+
+worst quality, low quality, lowres, blurry, CGI, anime, cartoon, 3d render, AI generated look, plastic skin, fake skin texture, overexposed, oversaturated, cinematic lighting, depth of field blur, bokeh, portrait mode, watermark, text, signature, distorted anatomy, unrealistic proportions, symmetrical composition`;
+}
+
+randomBtn.addEventListener("click",()=>{
+
+const loc=locations[Math.floor(Math.random()*locations.length)];
+const vibe=vibes[Math.floor(Math.random()*vibes.length)];
+const pose=poses[Math.floor(Math.random()*poses.length)];
+
+randomOutput.textContent=generatePrompt(loc,pose,vibe);
+
+});
+
+document.getElementById("requestBtn").addEventListener("click",()=>{
+
+const lokasi=document.getElementById("lokasiInput").value || "jalanan Indonesia";
+const pose=document.getElementById("poseInput").value || "berdiri santai";
+const vibe=document.getElementById("vibeInput").value || "calm";
+
+document.getElementById("requestOutput").textContent=
+generatePrompt(lokasi,pose,vibe);
+
+});
+
+document.getElementById("imageBtn").addEventListener("click",()=>{
+
+const desc=document.getElementById("imageDesc").value || "casual Indonesian person";
+
+document.getElementById("imageOutput").textContent=
+generatePrompt(desc,"berpose natural","warm");
+
+});
+
+function copyText(id){
+
+const text=document.getElementById(id).textContent;
+
+navigator.clipboard.writeText(text);
+
+alert("Prompt copied!");
+}
+
+document.getElementById("copyRandom")
+.addEventListener("click",()=>copyText("randomOutput"));
+
+document.getElementById("copyRequest")
+.addEventListener("click",()=>copyText("requestOutput"));
+
+document.getElementById("copyImage")
+.addEventListener("click",()=>copyText("imageOutput"));
+
+});
+
+</script>
+
+</body>
+</html>
